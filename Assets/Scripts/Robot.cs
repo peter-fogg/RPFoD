@@ -6,15 +6,30 @@ public class Robot : MonoBehaviour {
   public int health;
   public float speed;
   public int damage;
+  public Color colorPainted;
+  public Color colorVisible;
+  public GameObject target;
   
-  
-  // Use this for initialization
   void Start () {
     
   }
-	
-  // Update is called once per frame
+  
   void Update () {
-	
+    if(health <= 0) {
+      Destroy(gameObject);
+    }
+    
+  }
+  
+  static GameObject MakeRobot(Vector3 position, Color colorVisible,
+			      int damage, int health, float speed) {
+    GameObject robot = GameObject.CreatePrimitive(PrimitiveType.Cube);
+    robot.transform.position = position;
+    Robot robotScript = robot.AddComponent<Robot>();
+    robotScript.damage = damage;
+    robotScript.health = health;
+    robotScript.speed = speed;
+    robotScript.speed = speed;
+    robotScript.colorVisible = colorVisible;
   }
 }
