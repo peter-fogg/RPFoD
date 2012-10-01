@@ -31,5 +31,6 @@ public class Robot : MonoBehaviour {
     robotScript.speed = speed;
     robotScript.speed = speed;
     robotScript.colorVisible = colorVisible;
+    return robot;
   }
 }
