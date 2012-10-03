@@ -18,13 +18,25 @@ public class Robot : MonoBehaviour {
     if(health <= 0) {
       Destroy(gameObject);
     }
+    if(target != null) {
+      
+    }
+    else {
+      transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
     
   }
   
-  static GameObject MakeRobot(Vector3 position, Color colorVisible,
+  public void OnTriggerEnter(Collider other) {
+    
+  }
+  
+  public static GameObject MakeRobot(Vector3 position, Color colorVisible,
 			      int damage, int health, float speed) {
     GameObject robot = GameObject.CreatePrimitive(PrimitiveType.Cube);
     robot.transform.position = position;
+    robot.transform.localScale = new Vector3(.5f, .5f, .5f);
+    robot.renderer.material.color = colorVisible;
     Robot robotScript = robot.AddComponent<Robot>();
     robotScript.damage = damage;
     robotScript.health = health;
