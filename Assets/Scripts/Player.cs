@@ -2,9 +2,13 @@ using UnityEngine;
 using System.Collections;
 
 public class Player : MonoBehaviour {
-        
-        public Color ammoColor;
-        
+
+	public bool hasRed;
+	public bool hasGreen;
+	public bool hasBlue;
+	public Color colorPainted; // the color that the player is currently painted
+	public Color colorShooting; // the color that the player is currently shooting
+
 	// Use this for initialization
 	void Start () {
 		collider.enabled = true;
@@ -33,5 +37,6 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		Debug.Log("Shit, bro.");
+		
 	}
 }
