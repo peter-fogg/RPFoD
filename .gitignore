@@ -5,3 +5,4 @@ Temp/
 *.swp
 Assembly-UnityScript.pidb
 *.sln
+*.cs~
