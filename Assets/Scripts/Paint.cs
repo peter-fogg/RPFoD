@@ -7,7 +7,9 @@ public class Paint : MonoBehaviour {
   
   // Use this for initialization
   void Start () {
-	
+    collider.isTrigger = true;
+    // gameObject.AddComponent<Rigidbody>();
+    // rigidbody.useGravity = false;
   }
 	
   // Update is called once per frame
@@ -18,7 +20,8 @@ public class Paint : MonoBehaviour {
   /*
    * If a player walks over us, give them paint.
    */
-  public void OnTriggerEnter(Collider other) {
+  void OnTriggerEnter(Collider other) {
+    print("tarnation");
     Player player = other.gameObject.GetComponent<Player>();
     if(player) {
       player.colorShooting = color;
