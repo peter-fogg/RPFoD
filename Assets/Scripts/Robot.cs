@@ -9,9 +9,11 @@ public class Robot : MonoBehaviour {
   public Color colorPainted;
   public Color colorVisible;
   public GameObject target;
+  public float lastMoved;
+  public Vector3 direction;
   
   void Start () {
-    
+    lastMoved = Time.time;
   }
   
   void Update () {
@@ -21,8 +23,13 @@ public class Robot : MonoBehaviour {
     if(target != null) {
       
     }
-    else {
-      transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    else if(Time.time > lastMoved + speed) {
+      // if we hit a wall, change direction
+      if(GameManager.CheckPosition(transform.position + direction)) {
+	direction *= -1.0f;
+      }
+      transform.Translate(direction);
+      lastMoved = Time.time;
     }
     
   }
@@ -32,7 +39,8 @@ public class Robot : MonoBehaviour {
   }
   
   public static GameObject MakeRobot(Vector3 position, Color colorVisible,
-			      int damage, int health, float speed) {
+				     int damage, int health, float speed,
+				     Vector3 direction) {
     GameObject robot = GameObject.CreatePrimitive(PrimitiveType.Cube);
     robot.transform.position = position;
     robot.transform.localScale = new Vector3(.5f, .5f, .5f);
@@ -43,6 +51,7 @@ public class Robot : MonoBehaviour {
     robotScript.speed = speed;
     robotScript.speed = speed;
     robotScript.colorVisible = colorVisible;
+    robotScript.direction = direction;
     return robot;
   }
 }
