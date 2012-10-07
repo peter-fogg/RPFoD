@@ -31,6 +31,8 @@ public class Paint : MonoBehaviour {
     paint.transform.position = position;
     paint.transform.localScale = new Vector3(.25f, .25f, .25f);
     paint.renderer.material.color = color;
+    paint.collider.enabled = true;
+    paint.name = "Paint";
     Paint paintScript = paint.AddComponent<Paint>();
     paintScript.color = color;
     return paint;

@@ -44,6 +44,7 @@ public class Robot : MonoBehaviour {
     GameObject robot = GameObject.CreatePrimitive(PrimitiveType.Cube);
     robot.transform.position = position;
     robot.transform.localScale = new Vector3(.5f, .5f, .5f);
+    robot.name = "Robot";
     robot.renderer.material.color = colorVisible;
     Robot robotScript = robot.AddComponent<Robot>();
     robotScript.damage = damage;

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     player.transform.position = new Vector3(0, 0.25F, 0);
     player.transform.localScale = new Vector3(0.5F, 0.5F, 0.5F);
     player.AddComponent("Player");
+    player.renderer.material.color = Color.white;
+    player.name = "Player";
   }
   
   // Update is called once per frame
@@ -33,4 +35,15 @@ public class GameManager : MonoBehaviour {
     }
     return false;
   }
+
+  public static bool CheckPlayerPosition(Vector3 position) {
+    Collider[] objects = Physics.OverlapSphere(position, .1f);
+    // check whether the objects are walls
+    foreach(Collider coll in objects) {
+      if(coll.gameObject.GetComponent<WallBlock>())
+	return true;
+    }
+    return false;
+  }
+
 }
