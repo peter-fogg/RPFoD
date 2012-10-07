@@ -44,6 +44,7 @@ public class Player : MonoBehaviour {
 		if(Input.GetKeyDown("q")) {
 			// super-janky code for cycling through available colors
 			switch(colorCount) {
+				// if player is currently white
 				case 0: if(hasRed) {
 						renderer.material.color = Color.red;
 						colorCount = 1;
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour {
 					}
 					else
 						break;
+				// if player is currently red
 				case 1: if(hasGreen) {
 						renderer.material.color = Color.green;
 						colorCount = 2;
@@ -76,6 +78,7 @@ public class Player : MonoBehaviour {
 						colorCount = 0;
 						break;
 					}
+				// if player is currently green
 				case 2: if(hasBlue) {
 						renderer.material.color = Color.blue;
 						colorCount = 3;
@@ -86,6 +89,7 @@ public class Player : MonoBehaviour {
 						colorCount = 0;
 						break;
 					}
+				// if player is currently blue
 				case 3: renderer.material.color = Color.white;
 					colorCount = 0;
 					break;
