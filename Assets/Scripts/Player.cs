@@ -2,7 +2,9 @@ using UnityEngine;
 using System.Collections;
 
 public class Player : MonoBehaviour {
-
+        
+        public Color ammoColor;
+        
 	// Use this for initialization
 	void Start () {
 		collider.enabled = true;

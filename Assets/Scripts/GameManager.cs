@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
   // Use this for initialization
   void Start () {
     Robot.MakeRobot(new Vector3(3.0f, .25f, 0f), Color.red, 3, 10, 1, new Vector3(0, 0, 0.5f));
+    Paint.MakePaint(new Vector3(3.0f, .25f, 1.0f), Color.green);
     GameObject player = GameObject.CreatePrimitive(PrimitiveType.Sphere);
     player.transform.position = new Vector3(0, 0.25F, 0);
     player.transform.localScale = new Vector3(0.5F, 0.5F, 0.5F);
@@ -21,6 +22,13 @@ public class GameManager : MonoBehaviour {
    * if it is occupied, false if not.
    */
   public static bool CheckPosition(Vector3 position) {
-    return Physics.OverlapSphere(position, .1f).Length != 0;
+    Collider[] objects = Physics.OverlapSphere(position, .1f);
+    // make sure the objects aren't player or paint
+    foreach(Collider coll in objects) {
+      if(!coll.gameObject.GetComponent<Player>() &&
+	 !coll.gameObject.GetComponent<Paint>())
+	return true;
+    }
+    return false;
   }
 }
