@@ -5,7 +5,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		collider.enabled = true;
 	}
 	
 	// Update is called once per frame
@@ -22,10 +22,14 @@ public class Player : MonoBehaviour {
 		if(Input.GetKeyDown("s") && transform.position.z > -4.5F) {
 			transform.Translate(new Vector3(0, 0, -0.5F));
 		}
-		Debug.Log(transform.position);
+		//Debug.Log(transform.position);
 	}
 
 	void FixedUpdate() {
 
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		Debug.Log("Shit, bro.");
 	}
 }
