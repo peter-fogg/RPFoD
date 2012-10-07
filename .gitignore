@@ -6,3 +6,5 @@ Temp/
 Assembly-UnityScript.pidb
 *.sln
 *.cs~
+*.csproj
+*.userprefs
