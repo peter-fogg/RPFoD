@@ -105,4 +105,21 @@ public class Player : MonoBehaviour {
 		Debug.Log("Shit, bro.");
 		
 	}
+  
+  /*
+   * Called by paint when the player picks it up.
+   */
+  public void PickUp(Color color) {
+    print("goodness me!");
+    if(color == Color.green) {
+      hasGreen = true;
+    }
+    if(color == Color.blue) {
+      hasBlue = true;
+    }
+    if(color == Color.red) {
+      hasRed = true;
+    }
+    colorShooting = color;
+  }
 }
