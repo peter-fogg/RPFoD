@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
 	public int speed; // speed it moves
 	public int dir; // direction it's headed
 
-	void Update()
+/*	void Update()
 	{
 		switch(dir)
 		{
@@ -29,12 +29,12 @@ public class Projectile : MonoBehaviour
 				Transform.translate(-1*(transform.position.right)*speed);
 				break;
 		}
-	}
+	}*/
 	
-	static GameObject Projectile(Vector3 position, int damage, int range, int speed, int dir){
+/*	static GameObject Projectile(Vector3 position, int damage, int range, int speed, int dir){
 		GameObject proj = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		proj = new GameObject("Projectile");
 		proj.AddComponent("Rigidbody");
 	//	proj.AddComponent("Projectile.cs
-	}
+	}*/
 }
