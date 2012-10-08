@@ -10,10 +10,10 @@ public class Player : MonoBehaviour {
 	public Color colorShooting; // the color that the player is currently shooting
 
 
-	private Vector3 forward = new Vector3(0, 0, 0.5F);
-	private Vector3 backward = new Vector3(0, 0, -0.5F);
-	private Vector3 left = new Vector3(-0.5F, 0, 0);
-	private Vector3 right = new Vector3(0.5F, 0, 0);
+	public static Vector3 forward = new Vector3(0, 0, 0.5F);
+	public static Vector3 backward = new Vector3(0, 0, -0.5F);
+	public static Vector3 left = new Vector3(-0.5F, 0, 0);
+	public static Vector3 right = new Vector3(0.5F, 0, 0);
 
 	private int colorCount = 0;
 
