@@ -14,6 +14,13 @@ public class GameManager : MonoBehaviour {
     player.AddComponent("Player");
     player.renderer.material.color = Color.white;
     player.name = "Player";
+
+    GameObject wall = GameObject.Find("Cube");
+    while(wall != null) {
+	wall.name = "Wall";
+	wall.AddComponent("WallBlock");
+	wall = GameObject.Find("Cube");
+    }
   }
   
   // Update is called once per frame

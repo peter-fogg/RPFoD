@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Collections;
 
 /*r = x, b = z  */
-
+/*
 public class Projectile : MonoBehaviour
 {
 	public int damage; // damage a bullet does
@@ -35,6 +35,6 @@ public class Projectile : MonoBehaviour
 		GameObject proj = GameObject.CreatePrimitive(PrimitiveType.Cube)
 		proj = new GameObject("Projectile");
 		proj.AddComponent("Rigidbody");
-		proj.AddComponent("Projectile.cs
+		proj.AddComponent("Projectile.cs);
 	}
-}
+}*/
