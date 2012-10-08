@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
 				Transform.translate(transform.position.right*speed);
 				break;
 			case(SOUTH):
-				Transform.translate(-1*(transform.position.forward)*speed):
+				Transform.translate(-1*(transform.position.forward)*speed);
 				break;
 			case(WEST):
 				Transform.translate(-1*(transform.position.right)*speed);
@@ -32,9 +32,9 @@ public class Projectile : MonoBehaviour
 	}
 	
 	static GameObject Projectile(Vector3 position, int damage, int range, int speed, int dir){
-		GameObject proj = GameObject.CreatePrimitive(PrimitiveType.Cube)
+		GameObject proj = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		proj = new GameObject("Projectile");
 		proj.AddComponent("Rigidbody");
-		proj.AddComponent("Projectile.cs
+	//	proj.AddComponent("Projectile.cs
 	}
 }
