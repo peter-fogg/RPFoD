@@ -14,7 +14,10 @@ public class Paint : MonoBehaviour {
 	
   // Update is called once per frame
   void Update () {
-	
+    if(Vector3.Distance(transform.position, GameManager.player.transform.position) < .1) {
+      GameManager.player.GetComponent<Player>().PickUp(color);
+      Destroy(gameObject);
+    }
   }
   
   /*
