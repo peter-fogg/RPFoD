@@ -3,8 +3,6 @@
 using UnityEngine;
 using System.Collections;
 
-/*r = x, b = z  */
-
 public class Projectile : MonoBehaviour
 {
 	public Vector3 dir; // direction it's headed

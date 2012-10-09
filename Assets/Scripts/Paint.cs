@@ -24,7 +24,6 @@ public class Paint : MonoBehaviour {
    * If a player walks over us, give them paint.
    */
   void OnTriggerEnter(Collider other) {
-    print("tarnation");
     Player player = other.gameObject.GetComponent<Player>();
     if(player) {
       player.colorShooting = color;
