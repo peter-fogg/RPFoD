@@ -4,7 +4,8 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
   
   public static GameObject player;
-  
+  private Quaternion camRot;
+
   // Use this for initialization
   void Start () {
     // Create the player and stuff
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour {
     player.AddComponent("Player");
     player.renderer.material.color = Color.white;
     player.name = "Player";
+    Camera.main.transform.parent = player.transform;
 
     // Anything named "Cube" is now named "Wall"
     GameObject wall = GameObject.Find("Cube");
@@ -24,11 +26,13 @@ public class GameManager : MonoBehaviour {
 	wall.AddComponent("WallBlock");
 	wall = GameObject.Find("Cube");
     }
+
+    camRot = Camera.main.transform.rotation;
   }
   
   // Update is called once per frame
   void Update () {
-    
+    Camera.main.transform.rotation = camRot;
   }
   
   /*
