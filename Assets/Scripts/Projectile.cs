@@ -7,34 +7,22 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour
 {
-	public int damage; // damage a bullet does
-	public int range; // range it goes before performing end action
-	public int speed; // speed it moves
-	public int dir; // direction it's headed
+	public Vector3 dir; // direction it's headed
+	public Color colorPainted;
 
-/*	void Update()
+	void Update()
 	{
-		switch(dir)
-		{
-			case(NORTH):
-				Transform.translate(transform.position.forward*speed);
-				break;
-			case(EAST):
-				Transform.translate(transform.position.right*speed);
-				break;
-			case(SOUTH):
-				Transform.translate(-1*(transform.position.forward)*speed);
-				break;
-			case(WEST):
-				Transform.translate(-1*(transform.position.right)*speed);
-				break;
-		}
-	}*/
+		transform.Translate(dir*Time.time);
+	}
 	
-/*	static GameObject Projectile(Vector3 position, int damage, int range, int speed, int dir){
+	static GameObject MakeProj(Vector3 position, Vector3 dir, Color col){
 		GameObject proj = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		proj = new GameObject("Projectile");
-		proj.AddComponent("Rigidbody");
-	//	proj.AddComponent("Projectile.cs
-	}*/
+		proj.transform.localScale = new Vector3(.5f, .5f, .5f);
+		proj.renderer.material.color = col;
+		Projectile projScript = proj.AddComponent<Projectile>();
+		projScript.colorPainted = col;
+		projScript.dir = dir;
+		return proj;
+	}
 }
