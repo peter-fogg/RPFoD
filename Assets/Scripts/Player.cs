@@ -57,16 +57,19 @@ public class Player : MonoBehaviour {
 				// if player is currently white
 				case 0: if(hasRed) {
 						renderer.material.color = Color.red;
+						colorPainted = Color.red;
 						colorCount = 1;
 						break;
 					}
 					else if(hasGreen) {
 						renderer.material.color = Color.green;
+						colorPainted = Color.green;
 						colorCount = 2;
 						break;
 					}
 					else if(hasBlue) {
 						renderer.material.color = Color.blue;
+						colorPainted = Color.blue;
 						colorCount = 3;
 						break;
 					}
@@ -75,32 +78,38 @@ public class Player : MonoBehaviour {
 				// if player is currently red
 				case 1: if(hasGreen) {
 						renderer.material.color = Color.green;
+						colorPainted = Color.green;
 						colorCount = 2;
 						break;
 					}
 					else if(hasBlue) {
 						renderer.material.color = Color.blue;
+						colorPainted = Color.blue;
 						colorCount = 3;
 						break;
 					}
 					else {
 						renderer.material.color = Color.white;
+						colorPainted = Color.white;
 						colorCount = 0;
 						break;
 					}
 				// if player is currently green
 				case 2: if(hasBlue) {
 						renderer.material.color = Color.blue;
+						colorPainted = Color.blue;
 						colorCount = 3;
 						break;
 					}
 					else {
 						renderer.material.color = Color.white;
+						colorPainted = Color.white;
 						colorCount = 0;
 						break;
 					}
 				// if player is currently blue
 				case 3: renderer.material.color = Color.white;
+				  colorPainted = Color.white;
 					colorCount = 0;
 					break;
 			}
