@@ -5,15 +5,19 @@ public class Robot : MonoBehaviour {
   
   public int health;
   public float speed;
+  public float fireRate;
   public int damage;
   public Color colorPainted;
   public Color colorVisible;
   public GameObject target;
   public float lastMoved;
+  public float lastFired;
   public Vector3 direction;
   
   void Start () {
     lastMoved = Time.time;
+    lastFired = Time.time;
+    fireRate = 2;
   }
   
   void Update () {
@@ -31,7 +35,20 @@ public class Robot : MonoBehaviour {
       transform.Translate(direction);
       lastMoved = Time.time;
     }
-    
+    if(Time.time > lastFired + fireRate) {
+      Fire();
+    }
+  }
+
+  public void Fire() {
+    Player player = GameManager.player.GetComponent<Player>();
+    RaycastHit hit;
+    if(Physics.Raycast(transform.position, direction, out hit) &&
+       hit.collider.gameObject.GetComponent<Player>() == player &&
+       player.colorPainted == colorVisible &&
+       Vector3.Distance(transform.position, player.transform.position) < 5.0f) {
+      print("Bang!");
+    }
   }
   
   public void OnTriggerEnter(Collider other) {
