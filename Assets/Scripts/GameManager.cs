@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     player.renderer.material.color = Color.white;
     player.name = "Player";
 
+    // Anything named "Cube" is now named "Wall"
     GameObject wall = GameObject.Find("Cube");
     while(wall != null) {
 	wall.name = "Wall";
