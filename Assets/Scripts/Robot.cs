@@ -37,6 +37,7 @@ public class Robot : MonoBehaviour {
     }
     if(Time.time > lastFired + fireRate) {
       Fire();
+      lastFired = Time.time;
     }
   }
 
