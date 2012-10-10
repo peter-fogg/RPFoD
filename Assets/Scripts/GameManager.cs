@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour {
 	public void OnGUI() {
 		Player p = player.GetComponent<Player>();
 		GUI.Box(new Rect(10, 10, 100, 25), "Health: " + p.health);
-		GUI.Box(new Rect(10, 50, 100, 25), "Color: " +
+		GUI.Box(new Rect(10, 50, 150, 25), "Color Shooting: " +
 			((p.colorShooting == Color.blue) ? "Blue" :
 			(p.colorShooting == Color.red) ? "Red" :
 			(p.colorShooting == Color.green) ? "Green" :
