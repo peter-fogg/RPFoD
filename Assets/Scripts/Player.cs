@@ -10,12 +10,12 @@ public class Player : MonoBehaviour {
 	public Color colorShooting; // the color that the player is currently shooting
 
         public int health;
+	public int dir;
   
 	public static Vector3 forward = new Vector3(0, 0, 0.5F);
 	public static Vector3 backward = new Vector3(0, 0, -0.5F);
 	public static Vector3 left = new Vector3(-0.5F, 0, 0);
 	public static Vector3 right = new Vector3(0.5F, 0, 0);
-	public static Vector3 dir = forward;	
 
 	private int colorCount = 0;
 
@@ -36,28 +36,28 @@ public class Player : MonoBehaviour {
 				transform.Translate(forward);
 				transform.rotation = new Quaternion(0, 0, 0, 1.0F);
 				Camera.main.transform.Translate(new Vector3(0, 0.5F, 0));
-				dir = forward;
+				dir = 0;
 			}
 		}	
 		if(Input.GetKeyDown("a") && transform.position.x > -4.5F) {
 			if(!GameManager.CheckPlayerPosition(transform.position + left)) {
 				transform.Translate(left);
-				dir = left;
 				Camera.main.transform.Translate(new Vector3(-0.5F, 0, 0));
+				dir = 3;
 			}
 		}
 		if(Input.GetKeyDown("d") && transform.position.x < 4.5F) {
 			if(!GameManager.CheckPlayerPosition(transform.position + right)) {
 				transform.Translate(right);
-				dir = right;
 				Camera.main.transform.Translate(new Vector3(0.5F, 0, 0));
+				dir = 1;
 			}
 		}
 		if(Input.GetKeyDown("s") && transform.position.z > -4.5F) {
 			if(!GameManager.CheckPlayerPosition(transform.position + backward)) {
 				transform.Translate(backward);
-				dir = backward;
 				Camera.main.transform.Translate(new Vector3(0, -0.5F, 0));
+				dir = 2;
 			}
 		}
 		
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Space)) {
 		// fires projectiles
 
-			Projectile.MakeProj(transform.position, dir, colorShooting);
+			GameObject bul = Projectile.MakeProj(transform.position, dir, colorShooting);
 		}
 	}
 

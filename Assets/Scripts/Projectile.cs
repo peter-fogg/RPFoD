@@ -3,23 +3,30 @@
 using UnityEngine;
 using System.Collections;
 
+/*z=b x=r*/
+
 public class Projectile : MonoBehaviour
 {
-	public Vector3 dir; // direction it's headed
+	public int dir; // direction it's headed
 	public Color colorPainted;
 
 	void Update()
 	{
-		transform.Translate(dir);
-		transform.Translate(dir*Time.deltaTime*80);
+		switch(dir)
+		{
+			case(0):	transform.Translate(Vector3.forward);break;
+			case(1):	transform.Translate(Vector3.right);break;
+			case(2):	transform.Translate(-(Vector3.forward));break;
+			case(3):	transform.Translate(-(Vector3.right));break;
+		}
 	}
 
 	
 	
-	public static GameObject MakeProj(Vector3 position, Vector3 dir, Color col){
+	public static GameObject MakeProj(Vector3 position, int dir, Color col){
 		GameObject proj = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		proj = new GameObject("Projectile");
-		proj.transform.localScale = new Vector3(.1f, .1f, .1f);
+		proj.transform.localScale = new Vector3(.25f, .25f, .25f);
 		proj.renderer.material.color = col;
 		proj.transform.position = position;
 		Projectile projScript = proj.AddComponent<Projectile>();
