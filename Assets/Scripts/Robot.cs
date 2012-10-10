@@ -51,6 +51,12 @@ public class Robot : MonoBehaviour {
 		//	Projectile.MakeProj(transform.position, direction, colorVisible);
 			player.health -= damage;
 		}
+		else if(Physics.Raycast(transform.position, direction, out hit)) {
+		       Robot robot = hit.collider.gameObject.GetComponent<Robot>();
+		       if(robot != null && robot.colorPainted == colorVisible && Vector3.Distance(transform.position, robot.transform.position) < 5.0f) {
+			       robot.health -= damage;
+			}
+		}
 	}
   
 	public void OnTriggerEnter(Collider other) {
