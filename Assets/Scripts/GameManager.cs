@@ -10,14 +10,15 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		// Create the player and stuff
 		Robot.MakeRobot(new Vector3(3.0f, .25f, 0f), Color.green, 3, 10, 1, new Vector3(0, 0, 0.5f));
-		Paint.MakePaint(new Vector3(3.0f, .25f, 1.0f), Color.green);
+		Paint.MakePaint(new Vector3(2.0f, .25f, 1.0f), Color.green);
+		Paint.MakePaint(new Vector3(-1.0f, .25f, -1.0f), Color.red);
+		Paint.MakePaint(new Vector3(0.0f, .25f, 2.0f), Color.blue);
 		player = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 		player.transform.position = new Vector3(0, 0.25F, 0);
 		player.transform.localScale = new Vector3(0.5F, 0.5F, 0.5F);
 		player.AddComponent("Player");
 		player.renderer.material.color = Color.white;
 		player.name = "Player";
-		Camera.main.transform.parent = player.transform;
 
 		// Anything named "Cube" is now named "Wall"
 		GameObject wall = GameObject.Find("Cube");

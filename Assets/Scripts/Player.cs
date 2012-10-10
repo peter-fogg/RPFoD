@@ -13,8 +13,8 @@ public class Player : MonoBehaviour {
   
 	public static Vector3 forward = new Vector3(0, 0, 0.5F);
 	public static Vector3 backward = new Vector3(0, 0, -0.5F);
-	public static Vector3 left = new Vector3(-0.5F, 0, 0);
-	public static Vector3 right = new Vector3(0.5F, 0, 0);
+	public static Vector3 right = new Vector3(-0.5F, 0, 0);
+	public static Vector3 left = new Vector3(0.5F, 0, 0);
 
 	private int colorCount = 0;
 
@@ -30,30 +30,29 @@ public class Player : MonoBehaviour {
 			Time.timeScale = 0;
 			print("You're dead!");
 		}
-		if(Input.GetKeyDown("w") && transform.position.z < 4.5F) {
+		if(Input.GetKeyDown("w") /*&& transform.position.z < 4.5F*/) {
 			if(!GameManager.CheckPlayerPosition(transform.position + forward)) {
+				transform.rotation = new Quaternion(0, 0, 0, 0);
 				transform.Translate(forward);
-				transform.rotation = new Quaternion(0, 0, 0, 1.0F);
-				Camera.main.transform.Translate(new Vector3(0, 0.125F, 0));
+				Camera.main.transform.Translate(new Vector3(0, 0.5F, 0));
 			}
 		}	
-		if(Input.GetKeyDown("a") && transform.position.x > -4.5F) {
+		if(Input.GetKeyDown("a") /*&& transform.position.x > -4.5F*/) {
 			if(!GameManager.CheckPlayerPosition(transform.position + left)) {
+				transform.rotation = new Quaternion(0, -90F, 0, 0);
 				transform.Translate(left);
-				Camera.main.transform.Translate(new Vector3(-0.125F, 0, 0));
 			}
 		}
-		if(Input.GetKeyDown("d") && transform.position.x < 4.5F) {
+		if(Input.GetKeyDown("d") /*&& transform.position.x < 4.5F*/) {
 			if(!GameManager.CheckPlayerPosition(transform.position + right)) {
+				transform.rotation = new Quaternion(0, 90F, 0, 0);
 				transform.Translate(right);
-
-				Camera.main.transform.Translate(new Vector3(0.125F, 0, 0));
 			}
 		}
-		if(Input.GetKeyDown("s") && transform.position.z > -4.5F) {
+		if(Input.GetKeyDown("s") /*&& transform.position.z > -4.5F*/) {
 			if(!GameManager.CheckPlayerPosition(transform.position + backward)) {
-				transform.Translate(backward);
-				Camera.main.transform.Translate(new Vector3(0, -0.125F, 0));
+				transform.rotation = new Quaternion(0, 180F, 0, 0);
+				transform.Translate(forward);
 			}
 		}
 		
@@ -119,6 +118,12 @@ public class Player : MonoBehaviour {
 					colorCount = 0;
 					break;
 			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.Space)) {
+		// fires projectiles
+
+			Projectile.MakeProj(transform.position, dir, colorShooting);
 		}
 	}
 
