@@ -48,7 +48,7 @@ public class Robot : MonoBehaviour {
 		   hit.collider.gameObject.GetComponent<Player>() == player &&
 		   player.colorPainted == colorVisible &&
 		   Vector3.Distance(transform.position, player.transform.position) < 5.0f) {
-			Projectile.MakeProj(transform.position, direction, colorVisible);
+		//	Projectile.MakeProj(transform.position, direction, colorVisible);
 			player.health -= damage;
 		}
 	}
