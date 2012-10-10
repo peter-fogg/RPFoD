@@ -41,18 +41,21 @@ public class Player : MonoBehaviour {
 			if(!GameManager.CheckPlayerPosition(transform.position + left)) {
 				transform.rotation = new Quaternion(0, -90F, 0, 0);
 				transform.Translate(left);
+				Camera.main.transform.Translate(new Vector3(-0.5F, 0, 0));
 			}
 		}
 		if(Input.GetKeyDown("d") /*&& transform.position.x < 4.5F*/) {
 			if(!GameManager.CheckPlayerPosition(transform.position + right)) {
 				transform.rotation = new Quaternion(0, 90F, 0, 0);
 				transform.Translate(right);
+				Camera.main.transform.Translate(new Vector3(0.5F, 0, 0));
 			}
 		}
 		if(Input.GetKeyDown("s") /*&& transform.position.z > -4.5F*/) {
 			if(!GameManager.CheckPlayerPosition(transform.position + backward)) {
 				transform.rotation = new Quaternion(0, 180F, 0, 0);
 				transform.Translate(forward);
+				Camera.main.transform.Translate(new Vector3(0, -0.5F, 0));
 			}
 		}
 		
@@ -120,11 +123,11 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.Space)) {
+	/*	if(Input.GetKeyDown(KeyCode.Space)) {
 		// fires projectiles
 
 			Projectile.MakeProj(transform.position, dir, colorShooting);
-		}
+		}*/
 	}
 
 	void FixedUpdate() {
