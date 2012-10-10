@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
 	public static Vector3 backward = new Vector3(0, 0, -0.5F);
 	public static Vector3 left = new Vector3(-0.5F, 0, 0);
 	public static Vector3 right = new Vector3(0.5F, 0, 0);
+	public static Vector3 dir = forward;	
 
 	private int colorCount = 0;
 
@@ -25,20 +26,28 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown("w") && transform.position.z < 4.5F) {
-			if(!GameManager.CheckPlayerPosition(transform.position + forward))
+			if(!GameManager.CheckPlayerPosition(transform.position + forward)){
 				transform.Translate(forward);
+				dir = forward;
+			}
 		}	
 		if(Input.GetKeyDown("a") && transform.position.x > -4.5F) {
-			if(!GameManager.CheckPlayerPosition(transform.position + left))
+			if(!GameManager.CheckPlayerPosition(transform.position + left)) {
 				transform.Translate(left);
+				dir = left;
+			}
 		}
 		if(Input.GetKeyDown("d") && transform.position.x < 4.5F) {
-			if(!GameManager.CheckPlayerPosition(transform.position + right))
+			if(!GameManager.CheckPlayerPosition(transform.position + right)) {
 				transform.Translate(right);
+				dir = right;
+			}
 		}
 		if(Input.GetKeyDown("s") && transform.position.z > -4.5F) {
-			if(!GameManager.CheckPlayerPosition(transform.position + backward))
+			if(!GameManager.CheckPlayerPosition(transform.position + backward)) {
 				transform.Translate(backward);
+				dir = backward;
+			}
 		}
 		
 		if(Input.GetKeyDown("q")) {
@@ -94,6 +103,12 @@ public class Player : MonoBehaviour {
 					colorCount = 0;
 					break;
 			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.Space)) {
+		// fires projectiles
+
+			Projectile.MakeProj(transform.position, dir, colorShooting);
 		}
 	}
 
