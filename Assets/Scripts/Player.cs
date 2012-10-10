@@ -120,7 +120,45 @@ public class Player : MonoBehaviour {
 					break;
 			}
 		}
-
+		if(Input.GetKeyDown("e")) { // super-jank for switching shooting color
+			print("FUCK " + colorCount);
+			if(hasRed && hasGreen && hasBlue) {
+				if(colorShooting == Color.red) {
+					colorShooting = Color.green;
+				}
+				else if(colorShooting == Color.green) {
+					colorShooting = Color.blue;
+				}
+				else if(colorShooting == Color.blue) {
+					colorShooting = Color.red;
+				}
+			}
+			else if(hasRed && hasBlue) {
+				if(colorShooting == Color.red) {
+					colorShooting = Color.blue;
+				}
+				else {
+					colorShooting = Color.red;
+				}
+			}
+			else if(hasRed && hasGreen) {
+				if(colorShooting == Color.red) {
+					colorShooting = Color.green;
+				}
+				else {
+					colorShooting = Color.red;
+				}
+			}
+			else if(hasGreen && hasBlue) {
+				if(colorShooting == Color.blue) {
+					colorShooting = Color.green;
+				}
+				else {
+					colorShooting = Color.blue;
+				}
+			}
+		}
+	
 	/*	if(Input.GetKeyDown(KeyCode.Space)) {
 		// fires projectiles
 
@@ -141,18 +179,26 @@ public class Player : MonoBehaviour {
 	 * Called by paint when the player picks it up.
 	 */
 	public void PickUp(Color color) {
-		print("goodness me!");
+		if(colorCount == 0) {
+			colorShooting = color;
+		}
 		if(color == Color.green) {
+			if(!hasGreen) {
+				colorCount++;
+			}
 			hasGreen = true;
 		}
 		if(color == Color.blue) {
+			if(!hasBlue) {
+				colorCount++;
+			}
 			hasBlue = true;
 		}
 		if(color == Color.red) {
+			if(!hasRed) {
+				colorCount++;
+			}
 			hasRed = true;
 		}
-		colorShooting = color;
 	}
-
-	// public void Shoot(
 }
