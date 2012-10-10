@@ -14,8 +14,8 @@ public class Player : MonoBehaviour {
   
 	public static Vector3 forward = new Vector3(0, 0, 0.5F);
 	public static Vector3 backward = new Vector3(0, 0, -0.5F);
-	public static Vector3 left = new Vector3(-0.5F, 0, 0);
-	public static Vector3 right = new Vector3(0.5F, 0, 0);
+	public static Vector3 right = new Vector3(-0.5F, 0, 0);
+	public static Vector3 left = new Vector3(0.5F, 0, 0);
 
 	private int colorCount = 0;
 
@@ -27,35 +27,36 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(health == 0) {
-			//			Destroy(gameObject);
 			Time.timeScale = 0;
-			print("You're dead!");
 		}
-		if(Input.GetKeyDown("w") && transform.position.z < 4.5F) {
+		if(Input.GetKeyDown("w") /*&& transform.position.z < 4.5F*/) {
 			if(!GameManager.CheckPlayerPosition(transform.position + forward)) {
+				transform.rotation = new Quaternion(0, 0, 0, 0);
 				transform.Translate(forward);
-				transform.rotation = new Quaternion(0, 0, 0, 1.0F);
 				Camera.main.transform.Translate(new Vector3(0, 0.5F, 0));
 				dir = 0;
 			}
 		}	
-		if(Input.GetKeyDown("a") && transform.position.x > -4.5F) {
-			if(!GameManager.CheckPlayerPosition(transform.position + left)) {
+		if(Input.GetKeyDown("a") /*&& transform.position.x > -4.5F*/) {
+			if(!GameManager.CheckPlayerPosition(transform.position + right)) {
+				transform.rotation = new Quaternion(0, -90F, 0, 0);
 				transform.Translate(left);
 				Camera.main.transform.Translate(new Vector3(-0.5F, 0, 0));
 				dir = 3;
 			}
 		}
-		if(Input.GetKeyDown("d") && transform.position.x < 4.5F) {
-			if(!GameManager.CheckPlayerPosition(transform.position + right)) {
+		if(Input.GetKeyDown("d") /*&& transform.position.x < 4.5F*/) {
+			if(!GameManager.CheckPlayerPosition(transform.position + left)) {
+				transform.rotation = new Quaternion(0, 90F, 0, 0);
 				transform.Translate(right);
 				Camera.main.transform.Translate(new Vector3(0.5F, 0, 0));
 				dir = 1;
 			}
 		}
-		if(Input.GetKeyDown("s") && transform.position.z > -4.5F) {
+		if(Input.GetKeyDown("s") /*&& transform.position.z > -4.5F*/) {
 			if(!GameManager.CheckPlayerPosition(transform.position + backward)) {
-				transform.Translate(backward);
+				transform.rotation = new Quaternion(0, 180F, 0, 0);
+				transform.Translate(forward);
 				Camera.main.transform.Translate(new Vector3(0, -0.5F, 0));
 				dir = 2;
 			}
@@ -124,11 +125,49 @@ public class Player : MonoBehaviour {
 					break;
 			}
 		}
-
+		if(Input.GetKeyDown("e")) { // super-jank for switching shooting color
+			print("FUCK " + colorCount);
+			if(hasRed && hasGreen && hasBlue) {
+				if(colorShooting == Color.red) {
+					colorShooting = Color.green;
+				}
+				else if(colorShooting == Color.green) {
+					colorShooting = Color.blue;
+				}
+				else if(colorShooting == Color.blue) {
+					colorShooting = Color.red;
+				}
+			}
+			else if(hasRed && hasBlue) {
+				if(colorShooting == Color.red) {
+					colorShooting = Color.blue;
+				}
+				else {
+					colorShooting = Color.red;
+				}
+			}
+			else if(hasRed && hasGreen) {
+				if(colorShooting == Color.red) {
+					colorShooting = Color.green;
+				}
+				else {
+					colorShooting = Color.red;
+				}
+			}
+			else if(hasGreen && hasBlue) {
+				if(colorShooting == Color.blue) {
+					colorShooting = Color.green;
+				}
+				else {
+					colorShooting = Color.blue;
+				}
+			}
+		}
+	
 		if(Input.GetKeyDown(KeyCode.Space)) {
 		// fires projectiles
 
-			GameObject bul = Projectile.MakeProj(transform.position, dir, colorShooting);
+			Projectile.MakeProj(transform.position, dir, colorShooting);
 		}
 	}
 
@@ -145,18 +184,26 @@ public class Player : MonoBehaviour {
 	 * Called by paint when the player picks it up.
 	 */
 	public void PickUp(Color color) {
-		print("goodness me!");
+		if(colorCount == 0) {
+			colorShooting = color;
+		}
 		if(color == Color.green) {
+			if(!hasGreen) {
+				colorCount++;
+			}
 			hasGreen = true;
 		}
 		if(color == Color.blue) {
+			if(!hasBlue) {
+				colorCount++;
+			}
 			hasBlue = true;
 		}
 		if(color == Color.red) {
+			if(!hasRed) {
+				colorCount++;
+			}
 			hasRed = true;
 		}
-		colorShooting = color;
 	}
-
-	// public void Shoot(
 }
