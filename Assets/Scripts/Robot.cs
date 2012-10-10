@@ -17,7 +17,7 @@ public class Robot : MonoBehaviour {
 	void Start () {
 		lastMoved = Time.time;
 		lastFired = Time.time;
-		fireRate = 2;
+		fireRate = 1;
 	}
   
 	void Update () {
@@ -48,7 +48,7 @@ public class Robot : MonoBehaviour {
 		   hit.collider.gameObject.GetComponent<Player>() == player &&
 		   player.colorPainted == colorVisible &&
 		   Vector3.Distance(transform.position, player.transform.position) < 5.0f) {
-			Projectile.MakeProj(transform.position, direction, Color.blue);
+			Projectile.MakeProj(transform.position, direction, colorVisible);
 			player.health -= damage;
 		}
 	}

@@ -26,9 +26,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(health == 0) {
-			//			Destroy(gameObject);
 			Time.timeScale = 0;
-			print("You're dead!");
 		}
 		if(Input.GetKeyDown("w") && transform.position.z < 4.5F) {
 			if(!GameManager.CheckPlayerPosition(transform.position + forward)) {
