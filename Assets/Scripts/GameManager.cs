@@ -44,8 +44,11 @@ public class GameManager : MonoBehaviour {
 		Collider[] objects = Physics.OverlapSphere(position, .1f);
 		// make sure the objects aren't player or paint
 		foreach(Collider coll in objects) {
-			if(!coll.gameObject.GetComponent<Player>() &&
-			   !coll.gameObject.GetComponent<Paint>())
+			if(coll.gameObject.GetComponent<Player>()) {
+				GameManager.player.GetComponent<Player>().health = 0;
+				print("Haha! I'll crush you!");
+			}
+			else if(!coll.gameObject.GetComponent<Paint>())
 				return true;
 		}
 		return false;
@@ -55,10 +58,16 @@ public class GameManager : MonoBehaviour {
 		Collider[] objects = Physics.OverlapSphere(position, .1f);
 		// check whether the objects are walls
 		foreach(Collider coll in objects) {
-			if(coll.gameObject.GetComponent<WallBlock>())
+			if(coll.gameObject.GetComponent<WallBlock>() ||
+			   coll.gameObject.GetComponent<Robot>())
 				return true;
 		}
 		return false;
 	}
 
+	public void OnGUI() {
+		Player p = player.GetComponent<Player>();
+		GUI.Box(new Rect(10, 10, 100, 25), "Health: " + p.health);
+		GUI.Box(new Rect(10, 50, 100, 25), "Color: " + p.colorShooting);
+	}
 }
