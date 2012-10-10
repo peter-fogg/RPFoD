@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 	public Color colorShooting; // the color that the player is currently shooting
 
         public int health;
+	public int dir;
   
 	public static Vector3 forward = new Vector3(0, 0, 0.5F);
 	public static Vector3 backward = new Vector3(0, 0, -0.5F);
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour {
 				transform.rotation = new Quaternion(0, 0, 0, 0);
 				transform.Translate(forward);
 				Camera.main.transform.Translate(new Vector3(0, 0.5F, 0));
+				dir = 0;
 			}
 		}	
 		if(Input.GetKeyDown("a") /*&& transform.position.x > -4.5F*/) {
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour {
 				transform.rotation = new Quaternion(0, -90F, 0, 0);
 				transform.Translate(left);
 				Camera.main.transform.Translate(new Vector3(-0.5F, 0, 0));
+				dir = 3;
 			}
 		}
 		if(Input.GetKeyDown("d") /*&& transform.position.x < 4.5F*/) {
@@ -47,6 +50,7 @@ public class Player : MonoBehaviour {
 				transform.rotation = new Quaternion(0, 90F, 0, 0);
 				transform.Translate(right);
 				Camera.main.transform.Translate(new Vector3(0.5F, 0, 0));
+				dir = 1;
 			}
 		}
 		if(Input.GetKeyDown("s") /*&& transform.position.z > -4.5F*/) {
@@ -54,6 +58,7 @@ public class Player : MonoBehaviour {
 				transform.rotation = new Quaternion(0, 180F, 0, 0);
 				transform.Translate(forward);
 				Camera.main.transform.Translate(new Vector3(0, -0.5F, 0));
+				dir = 2;
 			}
 		}
 		
@@ -158,11 +163,11 @@ public class Player : MonoBehaviour {
 			}
 		}
 	
-	/*	if(Input.GetKeyDown(KeyCode.Space)) {
+		if(Input.GetKeyDown(KeyCode.Space)) {
 		// fires projectiles
 
 			Projectile.MakeProj(transform.position, dir, colorShooting);
-		}*/
+		}
 	}
 
 	void FixedUpdate() {
