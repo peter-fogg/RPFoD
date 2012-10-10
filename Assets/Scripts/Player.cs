@@ -34,26 +34,26 @@ public class Player : MonoBehaviour {
 			if(!GameManager.CheckPlayerPosition(transform.position + forward)) {
 				transform.Translate(forward);
 				transform.rotation = new Quaternion(0, 0, 0, 1.0F);
-				Camera.main.transform.Translate(new Vector3(0, 0.125F, 0));
+				Camera.main.transform.Translate(new Vector3(0, 0.5F, 0));
 			}
 		}	
 		if(Input.GetKeyDown("a") && transform.position.x > -4.5F) {
 			if(!GameManager.CheckPlayerPosition(transform.position + left)) {
 				transform.Translate(left);
-				Camera.main.transform.Translate(new Vector3(-0.125F, 0, 0));
+				Camera.main.transform.Translate(new Vector3(-0.5F, 0, 0));
 			}
 		}
 		if(Input.GetKeyDown("d") && transform.position.x < 4.5F) {
 			if(!GameManager.CheckPlayerPosition(transform.position + right)) {
 				transform.Translate(right);
 
-				Camera.main.transform.Translate(new Vector3(0.125F, 0, 0));
+				Camera.main.transform.Translate(new Vector3(0.5F, 0, 0));
 			}
 		}
 		if(Input.GetKeyDown("s") && transform.position.z > -4.5F) {
 			if(!GameManager.CheckPlayerPosition(transform.position + backward)) {
 				transform.Translate(backward);
-				Camera.main.transform.Translate(new Vector3(0, -0.125F, 0));
+				Camera.main.transform.Translate(new Vector3(0, -0.5F, 0));
 			}
 		}
 		
