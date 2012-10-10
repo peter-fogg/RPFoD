@@ -121,7 +121,6 @@ public class Player : MonoBehaviour {
 			}
 		}
 		if(Input.GetKeyDown("e")) { // super-jank for switching shooting color
-			print("FUCK " + colorCount);
 			if(hasRed && hasGreen && hasBlue) {
 				if(colorShooting == Color.red) {
 					colorShooting = Color.green;
