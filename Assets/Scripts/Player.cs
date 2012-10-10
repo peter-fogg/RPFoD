@@ -36,14 +36,14 @@ public class Player : MonoBehaviour {
 			}
 		}	
 		if(Input.GetKeyDown("a") /*&& transform.position.x > -4.5F*/) {
-			if(!GameManager.CheckPlayerPosition(transform.position + left)) {
+			if(!GameManager.CheckPlayerPosition(transform.position + right)) {
 				transform.rotation = new Quaternion(0, -90F, 0, 0);
 				transform.Translate(left);
 				Camera.main.transform.Translate(new Vector3(-0.5F, 0, 0));
 			}
 		}
 		if(Input.GetKeyDown("d") /*&& transform.position.x < 4.5F*/) {
-			if(!GameManager.CheckPlayerPosition(transform.position + right)) {
+			if(!GameManager.CheckPlayerPosition(transform.position + left)) {
 				transform.rotation = new Quaternion(0, 90F, 0, 0);
 				transform.Translate(right);
 				Camera.main.transform.Translate(new Vector3(0.5F, 0, 0));
