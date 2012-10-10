@@ -7,7 +7,7 @@ public class WallBlock : MonoBehaviour {
   
 	// Use this for initialization
 	void Start () {
-	
+		gameObject.renderer.material.color = currentColor;
 	}
 	
 	// Update is called once per frame
