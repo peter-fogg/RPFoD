@@ -48,13 +48,12 @@ public class Robot : MonoBehaviour {
 		   hit.collider.gameObject.GetComponent<Player>() == player &&
 		   player.colorPainted == colorVisible &&
 		   Vector3.Distance(transform.position, player.transform.position) < 5.0f) {
-		//	Projectile.MakeProj(transform.position, direction, colorVisible);
-			player.health -= damage;
+			Bullet.MakeBullet(transform.position, direction, damage, 0.5f);
 		}
 	}
   
 	public void OnTriggerEnter(Collider other) {
-    
+		
 	}
   
 	public static GameObject MakeRobot(Vector3 position, Color colorVisible,
