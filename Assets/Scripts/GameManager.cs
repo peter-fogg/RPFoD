@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour {
 		player.AddComponent("Player");
 		player.renderer.material.color = Color.white;
 		player.name = "Player";
-		Camera.main.transform.parent = player.transform;
 
 		// Anything named "Cube" is now named "Wall"
 		GameObject wall = GameObject.Find("Cube");
