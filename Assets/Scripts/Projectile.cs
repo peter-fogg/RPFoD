@@ -25,10 +25,10 @@ public class Projectile : MonoBehaviour
 	
 	public static GameObject MakeProj(Vector3 position, int dir, Color col){
 		GameObject proj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-		proj = new GameObject("Projectile");
 		proj.transform.localScale = new Vector3(.25f, .25f, .25f);
 		proj.renderer.material.color = col;
 		proj.transform.position = position;
+		proj.name = "Projectile";
 		Projectile projScript = proj.AddComponent<Projectile>();
 		projScript.colorPainted = col;
 		projScript.dir = dir;
