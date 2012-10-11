@@ -165,7 +165,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 	
-		if(Input.GetKeyDown(KeyCode.Space)) {
+		if(Input.GetKeyDown(KeyCode.Space) && (colorShooting == Color.red || colorShooting == Color.green || colorShooting == Color.blue)) {
 		// fires projectiles
 
 			Projectile.MakeProj(transform.position, dir, colorShooting);
