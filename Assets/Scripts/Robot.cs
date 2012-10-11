@@ -13,6 +13,7 @@ public class Robot : MonoBehaviour {
 	public float lastMoved;
 	public float lastFired;
 	public Vector3 direction;
+	public GameObject colorIndicator; // a cube painted the color which we see
   
 	void Start () {
 		lastMoved = Time.time;
@@ -72,9 +73,14 @@ public class Robot : MonoBehaviour {
 		robot.transform.position = position;
 		robot.transform.localScale = new Vector3(.5f, .5f, .5f);
 		robot.name = "Robot";
-		robot.renderer.material.color = colorVisible;
 		robot.AddComponent<Rigidbody>();
+		GameObject colorIndicator = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		colorIndicator.renderer.material.color = colorVisible;
+		colorIndicator.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+		colorIndicator.transform.position = position + new Vector3(0.0f, 0.5f, 0.0f);
+		colorIndicator.transform.parent = robot.transform;
 		Robot robotScript = robot.AddComponent<Robot>();
+		robotScript.colorIndicator = colorIndicator;
 		robotScript.damage = damage;
 		robotScript.health = health;
 		robotScript.speed = speed;
@@ -82,5 +88,10 @@ public class Robot : MonoBehaviour {
 		robotScript.colorVisible = colorVisible;
 		robotScript.direction = direction;
 		return robot;
+	}
+
+	public void SetColorPainted(Color color) {
+		colorPainted = color;
+		renderer.material.color = colorPainted;
 	}
 }

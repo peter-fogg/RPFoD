@@ -48,7 +48,9 @@ public class GameManager : MonoBehaviour {
 				GameManager.player.GetComponent<Player>().health = 0;
 				print("Haha! I'll crush you!");
 			}
-			else if(!coll.gameObject.GetComponent<Paint>())
+			else if(!coll.gameObject.GetComponent<Paint>() &&
+				!coll.gameObject.GetComponent<Projectile>() &&
+				!coll.gameObject.GetComponent<Bullet>())
 				return true;
 		}
 		return false;
