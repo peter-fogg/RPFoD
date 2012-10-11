@@ -51,12 +51,12 @@ public class Robot : MonoBehaviour {
 		   hit.collider.gameObject.GetComponent<Player>() == player &&
 		   player.colorPainted == colorVisible &&
 		   Vector3.Distance(transform.position, player.transform.position) < 5.0f) {
-			Bullet.MakeBullet(transform.position, direction, damage, 1.0f);
+			Bullet.MakeBullet(transform.position, direction, damage, 1.0f, gameObject);
 		}
 		else if(Physics.Raycast(transform.position, direction, out hit)) {
 		       Robot robot = hit.collider.gameObject.GetComponent<Robot>();
 		       if(robot != null && robot.colorPainted == colorVisible && Vector3.Distance(transform.position, robot.transform.position) < 5.0f) {
-			       robot.health -= damage;
+			       Bullet.MakeBullet(transform.position, direction, damage, 1.0f, gameObject);
 			}
 		}
 	}
