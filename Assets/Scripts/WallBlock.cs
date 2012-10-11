@@ -14,4 +14,9 @@ public class WallBlock : MonoBehaviour {
 	void Update () {
 	
 	}
+	
+	public void SetColorPainted(Color color) {
+		currentColor = color;
+		renderer.material.color = color;
+	}
 }

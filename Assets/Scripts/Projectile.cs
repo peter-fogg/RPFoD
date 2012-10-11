@@ -75,6 +75,12 @@ public class Projectile : MonoBehaviour
 		if(robot != null) {
 			robot.SetColorPainted(colorPainted);
 		}
+		else {
+			WallBlock block = other.gameObject.GetComponent<WallBlock>();
+			if(block != null) {
+				block.SetColorPainted(colorPainted);
+			}
+		}
 		Destroy(gameObject);
 	}
 }

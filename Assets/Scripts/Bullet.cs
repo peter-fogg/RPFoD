@@ -37,6 +37,9 @@ public class Bullet : MonoBehaviour {
 		return bullet;
 	}
 
+	/*
+	 * Dammit dammit dammit this shouldn't be copy/pasted but whatever
+	 */
 	public void OnTriggerEnter(Collider other) {
 		if(other.gameObject == cameFrom) {
 			return;
@@ -53,5 +56,12 @@ public class Bullet : MonoBehaviour {
 			Destroy(gameObject);
 			return;
 		}
+		DestructibleBlock block = other.gameObject.GetComponent<DestructibleBlock>();
+		if(block != null) {
+			block.health -= damage;
+			Destroy(gameObject);
+			return;
+		}
+		Destroy(gameObject);
 	}
 }
