@@ -18,6 +18,9 @@ public class Robot : MonoBehaviour {
 		lastMoved = Time.time;
 		lastFired = Time.time;
 		fireRate = 1;
+		rigidbody.isKinematic = false;
+		rigidbody.useGravity = false;
+		rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 	}
   
 	void Update () {
@@ -70,6 +73,7 @@ public class Robot : MonoBehaviour {
 		robot.transform.localScale = new Vector3(.5f, .5f, .5f);
 		robot.name = "Robot";
 		robot.renderer.material.color = colorVisible;
+		robot.AddComponent<Rigidbody>();
 		Robot robotScript = robot.AddComponent<Robot>();
 		robotScript.damage = damage;
 		robotScript.health = health;

@@ -22,6 +22,8 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		health = 15;
+		collider.isTrigger = true;
+		collider.enabled = true;
 	}
 	
 	// Update is called once per frame
