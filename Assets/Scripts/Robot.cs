@@ -51,7 +51,7 @@ public class Robot : MonoBehaviour {
 		   hit.collider.gameObject.GetComponent<Player>() == player &&
 		   player.colorPainted == colorVisible &&
 		   Vector3.Distance(transform.position, player.transform.position) < 5.0f) {
-			Bullet.MakeBullet(transform.position, direction, damage, 0.5f);
+			Bullet.MakeBullet(transform.position, direction, damage, 1.0f);
 		}
 		else if(Physics.Raycast(transform.position, direction, out hit)) {
 		       Robot robot = hit.collider.gameObject.GetComponent<Robot>();
