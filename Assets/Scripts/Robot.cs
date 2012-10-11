@@ -18,6 +18,9 @@ public class Robot : MonoBehaviour {
 		lastMoved = Time.time;
 		lastFired = Time.time;
 		fireRate = 1;
+		rigidbody.isKinematic = false;
+		rigidbody.useGravity = false;
+		rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 	}
   
 	void Update () {
@@ -48,13 +51,18 @@ public class Robot : MonoBehaviour {
 		   hit.collider.gameObject.GetComponent<Player>() == player &&
 		   player.colorPainted == colorVisible &&
 		   Vector3.Distance(transform.position, player.transform.position) < 5.0f) {
-		//	Projectile.MakeProj(transform.position, direction, colorVisible);
-			player.health -= damage;
+			Bullet.MakeBullet(transform.position, direction, damage, 1.0f);
+		}
+		else if(Physics.Raycast(transform.position, direction, out hit)) {
+		       Robot robot = hit.collider.gameObject.GetComponent<Robot>();
+		       if(robot != null && robot.colorPainted == colorVisible && Vector3.Distance(transform.position, robot.transform.position) < 5.0f) {
+			       robot.health -= damage;
+			}
 		}
 	}
   
 	public void OnTriggerEnter(Collider other) {
-    
+		
 	}
   
 	public static GameObject MakeRobot(Vector3 position, Color colorVisible,
@@ -65,6 +73,7 @@ public class Robot : MonoBehaviour {
 		robot.transform.localScale = new Vector3(.5f, .5f, .5f);
 		robot.name = "Robot";
 		robot.renderer.material.color = colorVisible;
+		robot.AddComponent<Rigidbody>();
 		Robot robotScript = robot.AddComponent<Robot>();
 		robotScript.damage = damage;
 		robotScript.health = health;

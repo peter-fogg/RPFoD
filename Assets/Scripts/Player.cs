@@ -22,6 +22,8 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		health = 15;
+		collider.isTrigger = true;
+		collider.enabled = true;
 	}
 	
 	// Update is called once per frame
@@ -187,21 +189,12 @@ public class Player : MonoBehaviour {
 			colorShooting = color;
 		}
 		if(color == Color.green) {
-			if(!hasGreen) {
-				colorCount++;
-			}
 			hasGreen = true;
 		}
 		if(color == Color.blue) {
-			if(!hasBlue) {
-				colorCount++;
-			}
 			hasBlue = true;
 		}
 		if(color == Color.red) {
-			if(!hasRed) {
-				colorCount++;
-			}
 			hasRed = true;
 		}
 	}
