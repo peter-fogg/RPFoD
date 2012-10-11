@@ -166,7 +166,7 @@ public class Player : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Space)) {
 		// fires projectiles
 
-			Projectile.MakeProj(transform.position, dir, colorShooting);
+			Projectile.MakeProj(transform.position, dir, colorPainted);
 		}
 	}
 
