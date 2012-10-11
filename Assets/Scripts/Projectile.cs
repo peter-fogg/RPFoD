@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
 	public int dir; // direction it's headed
 	public Color colorPainted;
 	public Vector3 face;
-
+	public GameObject in;
 	void Update()
 	{
 		switch(dir)
@@ -36,6 +36,12 @@ public class Projectile : MonoBehaviour
 		projScript.dir = dir;
 		proj.AddComponent("Rigidbody");
 		proj.rigidbody.isKinematic = true;
+		proj.rigidbody.useGravity = false;
+		proj.rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+		proj.rigidbody.collider.isTrigger = true;
+		proj.rigidbody.collider.enabled = true;
+		in = proj;
+
 		switch(dir)
 		{
 			case(0):	projScript.face = Vector3.forward;break;
@@ -48,9 +54,7 @@ public class Projectile : MonoBehaviour
 	}
 
 	void OnTriggerEnter(Collider other) {
-		other.gameObject.GetComponent<Robot>().colorPainted = colorPainted;
-
-		var b = other.gameObject.GetComponent<Robot>().colorPainted == colorPainted;
-		Debug.Log(""+b) ;
+		other.gameObject.GetComponent<Robot>().colorPainted = in.colorPainted;
+		Destroy(gameObject);
 	}
 }
