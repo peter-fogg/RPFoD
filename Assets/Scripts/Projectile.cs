@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
 {
 	public int dir; // direction it's headed
 	public Color colorPainted;
+	public Vector3 face;
 
 	void Update()
 	{
@@ -19,6 +20,7 @@ public class Projectile : MonoBehaviour
 			case(2):	transform.Translate(-(Vector3.forward));break;
 			case(3):	transform.Translate(-(Vector3.right));break;
 		}
+		Destroy(gameObject, 1);
 	}
 
 	
@@ -32,6 +34,23 @@ public class Projectile : MonoBehaviour
 		Projectile projScript = proj.AddComponent<Projectile>();
 		projScript.colorPainted = col;
 		projScript.dir = dir;
+		proj.AddComponent("Rigidbody");
+		proj.rigidbody.isKinematic = true;
+		switch(dir)
+		{
+			case(0):	projScript.face = Vector3.forward;break;
+			case(1):	projScript.face = Vector3.right;break;
+			case(2):	projScript.face = -(Vector3.forward);break;
+			case(3):	projScript.face = -(Vector3.right);break;
+		}
+	
 		return proj;
+	}
+
+	void OnTriggerEnter(Collider other) {
+		other.gameObject.GetComponent<Robot>().colorPainted = colorPainted;
+
+		var b = other.gameObject.GetComponent<Robot>().colorPainted == colorPainted;
+		Debug.Log(""+b) ;
 	}
 }
