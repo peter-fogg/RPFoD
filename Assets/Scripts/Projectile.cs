@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
 		projScript.colorPainted = col;
 		projScript.dir = dir;
 		proj.AddComponent("Rigidbody");
-		proj.rigidbody.isKinematic = true;
+		proj.rigidbody.isKinematic = false;
 		proj.rigidbody.useGravity = false;
 		proj.rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 		proj.rigidbody.collider.isTrigger = true;
