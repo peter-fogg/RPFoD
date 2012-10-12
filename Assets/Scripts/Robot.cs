@@ -13,6 +13,7 @@ public class Robot : MonoBehaviour {
 	public float lastMoved;
 	public float lastFired;
 	public Vector3 direction;
+	public Vector3 directionFacing;
 	public GameObject colorIndicator; // a cube painted the color which we see
   
 	void Start () {
@@ -48,23 +49,23 @@ public class Robot : MonoBehaviour {
 	public void Fire() {
 		Player player = GameManager.player.GetComponent<Player>();
 		RaycastHit hit;
-		if(Physics.Raycast(transform.position, direction, out hit) &&
+		if(Physics.Raycast(transform.position, directionFacing, out hit) &&
 		   hit.collider.gameObject.GetComponent<Player>() == player &&
 		   player.colorPainted == colorVisible &&
 		   Vector3.Distance(transform.position, player.transform.position) < 5.0f) {
-			Bullet.MakeBullet(transform.position, direction, damage, 1.0f, gameObject);
+			Bullet.MakeBullet(transform.position, directionFacing, damage, 1.0f, gameObject);
 		}
-		if(Physics.Raycast(transform.position, direction, out hit)) {
+		if(Physics.Raycast(transform.position, directionFacing, out hit)) {
 			Robot robot = hit.collider.gameObject.GetComponent<Robot>();
 			if(robot != null && robot.colorPainted == colorVisible && Vector3.Distance(transform.position, robot.transform.position) < 5.0f) {
-				Bullet.MakeBullet(transform.position, direction, damage, 1.0f, gameObject);
+				Bullet.MakeBullet(transform.position, directionFacing, damage, 1.0f, gameObject);
 			}
 		}
-		if(Physics.Raycast(transform.position, direction, out hit)) {
+		if(Physics.Raycast(transform.position, directionFacing, out hit)) {
 			WallBlock block = hit.collider.gameObject.GetComponent<WallBlock>();
 			if(block != null && block.currentColor == colorVisible &&
 			   Vector3.Distance(transform.position, block.transform.position) < 5.0f) {
-				Bullet.MakeBullet(transform.position, direction, damage, 1.0f, gameObject);
+				Bullet.MakeBullet(transform.position, directionFacing, damage, 1.0f, gameObject);
 			}
 		}
 	}
@@ -75,7 +76,10 @@ public class Robot : MonoBehaviour {
   
 	public static GameObject MakeRobot(Vector3 position, Color colorVisible,
 					   int damage, int health, float speed,
-					   Vector3 direction) {
+					   Vector3 direction, Vector3 facing = default(Vector3)) {
+		if(facing == default(Vector3)) {
+			facing = direction;
+		}
 		GameObject robot = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		robot.transform.position = position;
 		robot.transform.localScale = new Vector3(.5f, .5f, .5f);
@@ -83,6 +87,7 @@ public class Robot : MonoBehaviour {
 		robot.AddComponent<Rigidbody>();
 		GameObject colorIndicator = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		colorIndicator.renderer.material.color = colorVisible;
+		colorIndicator.name = "Color Indicator";
 		colorIndicator.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 		colorIndicator.transform.position = position + new Vector3(0.0f, 0.5f, 0.0f);
 		colorIndicator.transform.parent = robot.transform;
