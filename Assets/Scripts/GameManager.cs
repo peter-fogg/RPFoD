@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 		Paint.MakePaint(new Vector3(-1.0f, .25f, -1.0f), Color.red);
 		Paint.MakePaint(new Vector3(0.0f, .25f, 2.0f), Color.blue);
 		player = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		player.transform.position = new Vector3(0, 0.25F, 0);
+		player.transform.position = new Vector3(-9.5f, 0.25F, -8.5f);
 		player.transform.localScale = new Vector3(0.5F, 0.5F, 0.5F);
 		player.AddComponent("Player");
 		player.renderer.material.color = Color.white;
@@ -48,7 +48,9 @@ public class GameManager : MonoBehaviour {
 				GameManager.player.GetComponent<Player>().health = 0;
 				print("Haha! I'll crush you!");
 			}
-			else if(!coll.gameObject.GetComponent<Paint>())
+			else if(!coll.gameObject.GetComponent<Paint>() &&
+				!coll.gameObject.GetComponent<Projectile>() &&
+				!coll.gameObject.GetComponent<Bullet>())
 				return true;
 		}
 		return false;
@@ -68,6 +70,10 @@ public class GameManager : MonoBehaviour {
 	public void OnGUI() {
 		Player p = player.GetComponent<Player>();
 		GUI.Box(new Rect(10, 10, 100, 25), "Health: " + p.health);
-		GUI.Box(new Rect(10, 50, 100, 25), "Color: " + p.colorShooting);
+		GUI.Box(new Rect(10, 50, 150, 25), "Color Shooting: " +
+			((p.colorShooting == Color.blue) ? "Blue" :
+			(p.colorShooting == Color.red) ? "Red" :
+			(p.colorShooting == Color.green) ? "Green" :
+			 "None"));
 	}
 }
