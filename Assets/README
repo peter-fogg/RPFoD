@@ -1,0 +1,9 @@
+RPFoD Prototype
+(c) UTO 2012 all rights reserved
+
+Known Bugs:
+      Robots seem to only shoot at player if colored green
+      Robots colored green will only shoot at a player colored blue
+      	     //above errors are probably related
+	     //comments in a readme are so meta
+
