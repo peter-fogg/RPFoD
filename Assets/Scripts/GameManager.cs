@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
 		player.transform.position = new Vector3(-9.5f, 0.25F, -8.5f);
 		player.transform.localScale = new Vector3(0.5F, 0.5F, 0.5F);
 		player.AddComponent("Player");
+		Material playerMat = Resources.Load("Materials/Cake", typeof(Material)) as Material;
+		player.renderer.material = playerMat;
 		player.renderer.material.color = Color.white;
 		player.name = "Player";
 
