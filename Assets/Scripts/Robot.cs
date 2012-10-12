@@ -35,6 +35,9 @@ public class Robot : MonoBehaviour {
 		else if(Time.time > lastMoved + speed) {
 			// if we hit a wall, change direction
 			if(GameManager.CheckPosition(transform.position + direction)) {
+				if(direction == directionFacing) {
+					directionFacing *= -1.0f;
+				}
 				direction *= -1.0f;
 			}
 			transform.Translate(direction);
